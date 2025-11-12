@@ -43,9 +43,31 @@ def distillation_params(self):
 	return {
 		'method': 'hard_and_soft_targets',
 		'teacher': "path/to/teacher",
-		'temperature': [1.5, 2, 3, 4, 6],
-		'alpha': [.3, .5, .7, .9],
+		'temperature': [1.5, 2, 3, 4, 6], 	        # sweep over different temperatures
+		'alpha': [.3, .5, .7, .9],		        # weight on soft targets vs. hard labels 
 		'freeze_teacher': True,
+
+		# Adding this for a FitNet-style intermediate loss
+		'intermediate_losses': [{
+			# Specify which layers to match
+			'name': 'hint_1',
+			'student_layer_idx': 1,           	# Should be halfway through student
+			'teacher_layer_idx': -2,          	# Should be halfway through teacher
+			'loss': 'mse',
+
+			# Need to handle dimension mismatch - use a linear projection
+			'projection': {
+				'type': 'linear',
+				'out_dim': 128,
+				'bias': False,
+			},
+
+			# weight (beta) — how much to weight this intermediate loss
+			'weight': [0.05, 0.1, 0.2],		# sweep over different weights
+
+			# Scheduler to ramp down the intermediate loss over time (less hinting)
+			'schedule': 'cosine decay'
+		}],
 	}
 
 # Here's another way this could be set up
