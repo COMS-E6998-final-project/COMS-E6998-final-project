@@ -34,7 +34,7 @@ def student_model(self):
 				'constant': self.embed_init_constant,
 				'accum_initial_value': self.accum_initial_value,
 			},
-      	},
+	},
 	}
 
 @cached_property
