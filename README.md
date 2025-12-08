@@ -13,10 +13,8 @@
 
 ## Next Steps
 
-- Check if wandb is a flexible requirement
-- Check other deliverables like notebook, repo, etc.
-- Finalize experiment goals and setup
-- Mock up dataset / model on our end
+- Finish report rough draft
+- Start slides for presentation
 
 
 ## Experimental Outline
