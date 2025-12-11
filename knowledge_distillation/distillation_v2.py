@@ -9,8 +9,6 @@ here.
 
 In terms of the student architecture, I left things super basic since I am not sure
 what sort of constraints we are working with and how big we want to go.
-
-Note: All of the properties below are complete guesses
 """
 
 @cached_property

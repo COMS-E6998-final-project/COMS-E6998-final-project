@@ -15,8 +15,6 @@ Most common for improving pruning performance are L1 & L2
 
 pytorch pruning example: https://colab.research.google.com/github/pytorch/tutorials/blob/gh-pages/_downloads/f40ae04715cdb214ecba048c12f8dddf/pruning_tutorial.ipynb
 
-TODO: look into sparsity optimized tensor core specifics for our hardware (pufferfish TPUs)
-
 """
 @cached_property
 def prune(self):
