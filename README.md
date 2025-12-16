@@ -176,8 +176,6 @@ graph TD
     I --> J[Bidding Logic]
     %% Final Outcome
     J --> L[Ad Rendered to User]
-    L --> M{Conversion Event?}
-    M -->|Yes| N[Log for Future Retraining]
-    M -->|No| O[End Session]
+    L --> M{Check for Conversion Event}
 
 ```
