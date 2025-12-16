@@ -47,21 +47,3 @@ def distillation_params(self):
 		'alpha': [.3, .5, .7, .9],
 		'freeze_teacher': True,
 	}
-
-# Here's another way this could be set up
-# @cached_property
-# def loss_config(self):
-# 	"""Loss function configuration."""
-# 	return {
-# 		# Distillation loss (soft targets from teacher)
-# 		'distillation_loss': {
-# 			'type': 'kl_divergence',  # KL divergence between teacher/student
-# 			'weight': 0.9,
-# 			'temperature': self.temperature,
-# 		},
-# 		# Hard label loss (ground truth)
-# 		'student_loss': {
-# 			'type': 'cross_entropy',
-# 			'weight': 0.1,
-# 		},
-# 	}
