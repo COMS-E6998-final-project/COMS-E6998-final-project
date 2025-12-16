@@ -116,5 +116,68 @@ These results reinforce that carefully designed compression pipelines are viable
 - Rohan Singh  
 - Kimberly Collins  
 
-## 📄 License
-MIT License
+
+## Training Diagram
+
+```mermaid
+graph TD
+    %% Teacher Path
+    subgraph Teacher_Model [Teacher]
+        T_Features[Features] --> T_Model[MoE Layers]
+        T_Model --> T_Heads[Heads]
+        T_Heads --> T_pConv[Modeled Conversions]
+    end
+
+    %% Student Path
+    subgraph Student_Model [Student Specified in Pyplan]
+        S_Features[Features] --> S_Model[Student Layers]
+        S_Model --> S_pConv[Student pConv Prediction]
+    end
+
+    %% Data Input
+    Observed[Observed Conversions]
+
+    %% Label Construction & Loss
+    T_pConv --> Total[Modeled + Observed Conversions / Total Clicks]
+    Observed --> Total
+    
+    %% Loss Calculation
+    Total -- "Augmented Soft Target" --> KL_Loss{KL Divergence Loss}
+    S_pConv -- "Prediction" --> KL_Loss
+
+    %% Feedback
+    KL_Loss -.->|Gradients| S_Model
+```
+
+## Deplyment Usage Diagram
+```mermaid
+graph TD
+    %% User Actions
+    subgraph User_Environment [User Journey]
+        A[User enters Search Query in Browser] --> B[Ad Auction Triggered]
+        B --> C[Retrieve Candidate Ads]
+    end
+
+    %% Features Input
+    subgraph Feature_Extraction [Data and Features]
+        C --> D{Feature Vector Construction}
+        D -->|Query| E[Search Keywords & Intent]
+        D -->|User| F[Browsing History & Device Info]
+        D -->|Product| G[Company & Site Info]
+    end
+
+    %% Standalone Student Model
+    subgraph Production_Inference [Deployed Student Model]
+        E & F & G --> H[Intermediate Feature Layers]
+        H --> I[pConv Prediction]
+    end
+
+    %% Output & Decision
+    I --> J[Bidding Logic]
+    %% Final Outcome
+    J --> L[Ad Rendered to User]
+    L --> M{Conversion Event?}
+    M -->|Yes| N[Log for Future Retraining]
+    M -->|No| O[End Session]
+
+```
