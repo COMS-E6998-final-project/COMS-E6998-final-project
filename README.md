@@ -87,6 +87,7 @@ COMS-E6998-final-project/
 │
 ├── model.py
 ├── config_v1.py
+├── example_nb.ipynb   # to simulate a full workflow 
 └── README.md
 ```
 
