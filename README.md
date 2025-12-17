@@ -143,6 +143,11 @@ graph TD
 
 ```
 
+## Profiling and Experiment Tracking
+
+> [!NOTE]
+> After talking with the professor, we decided to use Google's internal tool (smartengine prod) instead of Weights and Biases, so we do not have a link that we can share.
+
 ## Team
 * Mahdi Saleh Tabesh
 * Alex Racapé
