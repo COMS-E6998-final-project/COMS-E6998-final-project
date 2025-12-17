@@ -49,13 +49,23 @@ The combined KD + INT8 pipeline produced the strongest student model, demonstrat
 
 ## Results
 
+![loss](results/PoissonLogLoss.png)
 
 | Method                   | PLL Change | Latency Impact | Notes                |
 |--------------------------|------------|----------------|----------------------|
 | KD + INT8 Quantization   | -0.15%     | -0.14 ms       | Strong trade-off     |
 | Feature KD               | Slight gain| Minimal        | Outperformed basic KD|
 | Basic KD                 | -.75%      | Minimal        | Good baseline        |
-| Pruning (proto)          | N/A        | N/A            | Not fully integrated |
+| Pruning (prototype)      | N/A        | N/A            | Not fully integrated |
+
+
+### Live Traffic Experiment
+
+For our KD + Feature KD + INT8 Quantization model, we observed the following:
+
+![latency](results/latency.png)
+
+![roi](results/spend.png)
 
 For the KD + INT8 Quantization model, we observed the following as well:
 * Reduced TPU compute usage
