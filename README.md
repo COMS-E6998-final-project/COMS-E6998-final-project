@@ -13,7 +13,8 @@ Our work evaluates the effectiveness of several model-compression strategies:
 * INT8 Post-Training Quantization (PTQ)
 * Prototype pruning approaches
 
-> ![NOTE] Much of our project was done in Google's internal infrastructure, and as such, we were unable to provide a complete codebase for our project. We have provided the experimental configs we used to define our experiments. Additionally, with the professor's permission, we used Google's internal profiling tools to evaluate the performance of our student models.
+> [!NOTE]
+> Much of our project was done in Google's internal infrastructure, and as such, we were unable to provide a complete codebase for our project. We have provided the experimental configs we used to define our experiments. Additionally, with the professor's permission, we used Google's internal profiling tools to evaluate the performance of our student models.
 
 ```mermaid
 graph TD
